@@ -49,7 +49,7 @@ export default {
       for (var i in this.details) {
         let client = this.$refs.dish[i].getBoundingClientRect()
         let scroll = this.$refs.dishs.scrollTop
-        if (client.top < 0 && (scroll - client.top -  this.top > client.height / 2)) {
+        if (client.top < 0 && (scroll - client.top - this.top > client.height / 2)) {
           this.selectType = i
         } 
       }      
