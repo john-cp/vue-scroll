@@ -31,7 +31,8 @@ export default {
           {name: '套餐分类五', type: '固定选项', details: ['雪花','勇闯','燕京','雪花','勇闯','勇闯','XO']}
         ],
       selectType: 0,
-      top: 0// 距离顶部初始值
+      top: 0,// 距离顶部初始值
+      scrollLock: true// 点击左侧菜单时domScroll滚动事件不执行
     }
   },
   mounted () {
@@ -46,6 +47,7 @@ export default {
       this.scroll(distance)
     },
     domScroll (e) {
+      if (!this.scrollLock) return
       for (var i in this.details) {
         let client = this.$refs.dish[i].getBoundingClientRect()
         let scroll = this.$refs.dishs.scrollTop
@@ -67,6 +69,9 @@ export default {
           if (n <= 30) {
             self.$refs.dishs.scrollTop = scroll
             myScroll()
+            self.scrollLock = false
+          } else {
+            self.scrollLock = true
           }             
         }, 10) 
       }          
